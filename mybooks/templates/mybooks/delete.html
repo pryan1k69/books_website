@@ -1,0 +1,9 @@
+{% extends 'homepage/base.html' %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <td>&nbsp;</td>
+        <button type="submit" class="btn btn-primary btn-sm">Удалить</button>
+    </form>
+{% endblock %}

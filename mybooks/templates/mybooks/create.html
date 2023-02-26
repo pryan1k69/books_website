@@ -1,0 +1,16 @@
+{% extends 'homepage/base.html' %}
+
+{% block content %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.name }} <br>
+        {{ form.text }} <br>
+        {{ form.img }} <br><br>
+        {{ form.author_fn }} <br>
+        {{ form.author_ln }}
+        <br>
+        <span>{{ error }}</span>
+        <br><br>
+        <button type="submit" class="btn btn-primary btn-sm">Выполнить</button>
+    </form>
+{% endblock %}

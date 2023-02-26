@@ -1,0 +1,51 @@
+{% extends 'homepage/base.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<figure class="text-center">
+  <blockquote class="blockquote">
+      <h4>Добро пожаловать, {{ user.username }}!</h4>
+  <p>Здесь вы можете редактировать, удалять или добавлять новые книги.</p>
+  </blockquote>
+</figure>
+{% endif %}
+    {% if userBooks %}
+    <form method="post">
+      <td>&nbsp;</td>
+      <a href="{% url 'mybooks:create' %}" class="btn btn-primary">Добавить книгу</a>
+    </form>
+    <br>
+        <div class="container-fluid">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+              <div class="col">
+                {% for book in userBooks %}
+                <div class="card">
+                  <img src="{{ book.img.url }}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">"{{ book.name }}"</h5>
+                    <h7 class="card-title">
+                        {{ book.author_fn.0 }}.
+                        {{ book.author_ln }}
+                    </h7><br><br>
+                    <a href="{% url 'mybooks:books_update' book.pk %}" class="btn btn-primary">Редактировать</a>
+                    <a href="{% url 'mybooks:books_delete' book.pk %}" class="btn btn-primary">Удалить</a>
+                  </div>
+                  <div class="card-footer">
+                    <small class="text-muted">{{ book.created_on }}</small>
+                  </div>
+                </div>
+                {% if forloop.counter|divisibleby:"1" %}</div>
+                <div class="col">{% endif %}
+                {% endfor %}
+                </div>
+              </div>
+          </div>  
+    {% else %}
+        <p>У вас пока нет созданных книг!</p>
+        <p>Добавьте новую книгу</p>
+        <form method="post">
+          <td>&nbsp;</td>
+          <a href="{% url 'mybooks:create' %}" class="btn btn-primary">Добавить книгу</a>
+        </form>
+    {% endif %}
+{% endblock %}

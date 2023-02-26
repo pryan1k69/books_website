@@ -1,0 +1,33 @@
+{% extends 'homepage/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="container-fluid">
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col">
+      {% for d in data %}
+      <div class="card">
+        <img src="{{ d.img.url }}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">"{{ d.name }}"</h5>
+          <h7 class="card-title">
+              {{ d.author_fn.0 }}.
+              {{ d.author_ln }}
+          </h7><br><br>
+          <a href="{% url 'info' d.pk %}" class="btn btn-primary">Подробнее</a>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">{{ d.created_on }}</small>
+        </div>
+      </div>
+      {% if forloop.counter|divisibleby:"1" %}</div>
+      <div class="col">{% endif %}
+      {% endfor %}
+      </div>
+    </div>
+</div>  
+
+
+{% endblock %}

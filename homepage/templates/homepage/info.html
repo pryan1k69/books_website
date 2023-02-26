@@ -1,0 +1,19 @@
+{% extends 'homepage/base.html' %}
+
+
+
+{% block content %}
+
+{% for book in book %}
+    <h3>"{{ book.name }}"</h3>
+    <h4>{{ book.author_fn.0 }}.
+        {{ book.author_ln }}
+    </h4>
+    <!-- <img src="{{ book.img.url }}" class="card-img-top" alt="..."> -->
+    <p>{{ book.text }}</p>
+{% endfor %}
+
+
+
+
+{% endblock %}

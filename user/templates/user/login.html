@@ -1,0 +1,28 @@
+{% extends 'homepage/base.html' %}
+
+{% block content %}
+  <h2>Авторизация</h2>
+  
+    <form method="post">
+        {% csrf_token %}
+        <div class="col-sm-3">
+            <td>&nbsp;</td>
+          <label for="inputPassword6" class="col-form-label">Логин</label>
+        </div>
+        <div class="col-sm-3">
+            <td>&nbsp;</td>
+            {{ form.username }}
+        </div>
+        <div class="col-sm-3">
+            <td>&nbsp;</td>
+          <label for="inputPassword6" class="col-form-label">Пароль</label>
+        </div>
+        <div class="col-sm-3">
+            <td>&nbsp;</td>
+            {{ form.password }}
+        </div>
+          <br>
+          <td>&nbsp;</td>
+          <input type="submit" value="Войти">
+    </form>
+{% endblock %}
